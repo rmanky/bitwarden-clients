@@ -690,6 +690,10 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.messagingService.send("newFolder");
   }
 
+  async addTag() {
+    this.messagingService.send("newTag");
+  }
+
   async editFolder(folderId: string) {
     if (this.modal != null) {
       this.modal.close();

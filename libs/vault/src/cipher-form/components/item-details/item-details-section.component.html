@@ -46,7 +46,7 @@
         </bit-hint>
       </bit-form-field>
     </ng-container>
-    <bit-form-field *ngIf="!config.hideIndividualVaultFields" disableMargin>
+    <bit-form-field *ngIf="!config.hideIndividualVaultFields">
       <bit-label>{{ "folder" | i18n }}</bit-label>
       <bit-select formControlName="folderId">
         <bit-option
@@ -55,6 +55,14 @@
           [label]="folder.name"
         ></bit-option>
       </bit-select>
+    </bit-form-field>
+    <bit-form-field *ngIf="!config.hideIndividualVaultFields" disableMargin>
+      <bit-label>{{ "tags" | i18n }}</bit-label>
+      <bit-multi-select
+        class="tw-w-full"
+        formControlName="tagIds"
+        [baseItems]="tagOptions"
+      ></bit-multi-select>
     </bit-form-field>
   </bit-card>
 </bit-section>

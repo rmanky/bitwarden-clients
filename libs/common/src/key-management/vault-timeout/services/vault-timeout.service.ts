@@ -19,6 +19,7 @@ import { StateEventRunnerService } from "../../../platform/state";
 import { UserId } from "../../../types/guid";
 import { CipherService } from "../../../vault/abstractions/cipher.service";
 import { FolderService } from "../../../vault/abstractions/folder/folder.service.abstraction";
+import { TagService } from "../../../vault/abstractions/tag/tag.service.abstraction";
 import { InternalMasterPasswordServiceAbstraction } from "../../master-password/abstractions/master-password.service.abstraction";
 import { VaultTimeoutSettingsService } from "../abstractions/vault-timeout-settings.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "../abstractions/vault-timeout.service";
@@ -32,6 +33,7 @@ export class VaultTimeoutService implements VaultTimeoutServiceAbstraction {
     private masterPasswordService: InternalMasterPasswordServiceAbstraction,
     private cipherService: CipherService,
     private folderService: FolderService,
+    private tagService: TagService,
     private collectionService: CollectionService,
     protected platformUtilsService: PlatformUtilsService,
     private messagingService: MessagingService,

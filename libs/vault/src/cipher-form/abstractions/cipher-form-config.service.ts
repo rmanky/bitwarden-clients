@@ -1,6 +1,6 @@
 import { CollectionView } from "@bitwarden/admin-console/common";
 import { Organization } from "@bitwarden/common/admin-console/models/domain/organization";
-import { CipherId, CollectionId, OrganizationId } from "@bitwarden/common/types/guid";
+import { CipherId, CollectionId, OrganizationId, TagId } from "@bitwarden/common/types/guid";
 import { CipherType } from "@bitwarden/common/vault/enums";
 import { Cipher } from "@bitwarden/common/vault/models/domain/cipher";
 import { FolderView } from "@bitwarden/common/vault/models/view/folder.view";
@@ -21,6 +21,7 @@ export type OptionalInitialValues = {
   folderId?: string;
   organizationId?: OrganizationId;
   collectionIds?: CollectionId[];
+  tagIds?: TagId[];
   loginUri?: string;
   username?: string;
   password?: string;
@@ -69,6 +70,9 @@ type BaseCipherFormConfig = {
    * can still be displayed in the component for reference.
    */
   collections: CollectionView[];
+
+  /** The list of tags for the current user. */
+  tags?: string[];
 
   /**
    * The list of folders for the current user. Should include the "No Folder" option with a `null` id.

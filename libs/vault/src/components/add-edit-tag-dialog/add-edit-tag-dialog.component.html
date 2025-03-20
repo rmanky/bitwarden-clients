@@ -1,0 +1,41 @@
+<form [formGroup]="tagForm" [bitSubmit]="submit" id="add-edit-tag">
+  <bit-dialog>
+    <span bitDialogTitle>
+      {{ (variant === "add" ? "newTag" : "editTag") | i18n }}
+    </span>
+    <div bitDialogContent>
+      <bit-form-field disableMargin>
+        <bit-label>{{ "tagName" | i18n }}</bit-label>
+        <input bitInput id="tagName" formControlName="name" type="text" />
+        <bit-hint>
+          {{ "tagHintText" | i18n }}
+        </bit-hint>
+      </bit-form-field>
+    </div>
+    <div bitDialogFooter class="tw-flex tw-gap-2 tw-w-full">
+      <button
+        #submitBtn
+        bitButton
+        buttonType="primary"
+        type="submit"
+        form="add-edit-tag"
+        [disabled]="tagForm.invalid"
+      >
+        {{ "save" | i18n }}
+      </button>
+      <button bitButton bitDialogClose buttonType="secondary" type="button">
+        {{ "cancel" | i18n }}
+      </button>
+
+      <button
+        *ngIf="variant === 'edit'"
+        type="button"
+        buttonType="danger"
+        class="tw-ml-auto"
+        bitIconButton="bwi-trash"
+        [appA11yTitle]="'deleteTag' | i18n"
+        [bitAction]="deleteTag"
+      ></button>
+    </div>
+  </bit-dialog>
+</form>

@@ -33,6 +33,7 @@ export class Cipher extends Domain implements Decryptable<CipherView> {
   id: string;
   organizationId: string;
   folderId: string;
+  tagId: string;
   name: EncString;
   notes: EncString;
   type: CipherType;

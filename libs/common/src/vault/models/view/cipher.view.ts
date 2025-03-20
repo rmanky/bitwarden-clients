@@ -43,6 +43,7 @@ export class CipherView implements View, InitializerMetadata {
   fields: FieldView[] = null;
   passwordHistory: PasswordHistoryView[] = null;
   collectionIds: string[] = null;
+  tagIds: string[] = null;
   revisionDate: Date = null;
   creationDate: Date = null;
   deletedDate: Date = null;

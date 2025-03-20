@@ -44,6 +44,8 @@ import { UserId } from "../../types/guid";
 import { CipherService } from "../../vault/abstractions/cipher.service";
 import { FolderApiServiceAbstraction } from "../../vault/abstractions/folder/folder-api.service.abstraction";
 import { InternalFolderService } from "../../vault/abstractions/folder/folder.service.abstraction";
+import { TagApiServiceAbstraction } from "../../vault/abstractions/tag/tag-api.service.abstraction";
+import { InternalTagService } from "../../vault/abstractions/tag/tag.service.abstraction";
 import { CipherData } from "../../vault/models/data/cipher.data";
 import { FolderData } from "../../vault/models/data/folder.data";
 import { CipherResponse } from "../../vault/models/response/cipher.response";
@@ -65,6 +67,7 @@ export class DefaultSyncService extends CoreSyncService {
     apiService: ApiService,
     private domainSettingsService: DomainSettingsService,
     folderService: InternalFolderService,
+    tagService: InternalTagService,
     cipherService: CipherService,
     private keyService: KeyService,
     collectionService: CollectionService,
@@ -76,6 +79,7 @@ export class DefaultSyncService extends CoreSyncService {
     stateService: StateService,
     private providerService: ProviderService,
     folderApiService: FolderApiServiceAbstraction,
+    tagApiService: TagApiServiceAbstraction,
     private organizationService: InternalOrganizationServiceAbstraction,
     sendApiService: SendApiService,
     private userDecryptionOptionsService: UserDecryptionOptionsServiceAbstraction,

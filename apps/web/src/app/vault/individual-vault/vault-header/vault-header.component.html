@@ -106,6 +106,10 @@
           <i class="bwi bwi-fw bwi-folder" aria-hidden="true"></i>
           {{ "folder" | i18n }}
         </button>
+        <button type="button" bitMenuItem (click)="addTag()">
+          <i class="bwi bwi-fw bwi-collection" aria-hidden="true"></i>
+          {{ "tag" | i18n }}
+        </button>
         <button *ngIf="canCreateCollections" type="button" bitMenuItem (click)="addCollection()">
           <i class="bwi bwi-fw bwi-collection" aria-hidden="true"></i>
           {{ "collection" | i18n }}

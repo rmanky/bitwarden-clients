@@ -69,6 +69,7 @@ import { DialogService, Icons, ToastService } from "@bitwarden/components";
 import {
   AddEditFolderDialogComponent,
   AddEditFolderDialogResult,
+  AddEditTagDialogComponent,
   CipherFormConfig,
   CollectionAssignmentResult,
   DecryptionFailureDialogComponent,
@@ -592,6 +593,10 @@ export class VaultComponent implements OnInit, OnDestroy {
 
   addFolder = (): void => {
     AddEditFolderDialogComponent.open(this.dialogService);
+  };
+
+  addTag = (): void => {
+    AddEditTagDialogComponent.open(this.dialogService);
   };
 
   editFolder = async (folder: FolderFilter): Promise<void> => {

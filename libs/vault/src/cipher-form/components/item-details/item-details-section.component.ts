@@ -54,9 +54,12 @@ export class ItemDetailsSectionComponent implements OnInit {
     name: ["", [Validators.required]],
     organizationId: [null],
     folderId: [null],
+    tagIds: new FormControl([]),
     collectionIds: new FormControl([], [Validators.required]),
     favorite: [false],
   });
+
+  protected tagOptions: SelectItemView[] = [];
 
   /**
    * Collection options available for the selected organization.
@@ -202,6 +205,7 @@ export class ItemDetailsSectionComponent implements OnInit {
         name: this.initialValues?.name || "",
         organizationId: this.initialValues?.organizationId || this.defaultOwner,
         folderId: this.initialValues?.folderId || null,
+        tagIds: this.initialValues?.tagIds || null,
         collectionIds: [],
         favorite: false,
       });
@@ -223,13 +227,14 @@ export class ItemDetailsSectionComponent implements OnInit {
   }
 
   private async initFromExistingCipher(prefillCipher: CipherView) {
-    const { name, folderId, collectionIds } = prefillCipher;
+    const { name, folderId, collectionIds, tagIds } = prefillCipher;
 
     this.itemDetailsForm.setValue({
       name: name ? name : (this.initialValues?.name ?? ""),
       organizationId: prefillCipher.organizationId, // We do not allow changing ownership of an existing cipher.
       folderId: folderId ? folderId : (this.initialValues?.folderId ?? null),
       collectionIds: [],
+      tagIds: tagIds ? tagIds : [],
       favorite: prefillCipher.favorite,
     });
 
@@ -264,6 +269,7 @@ export class ItemDetailsSectionComponent implements OnInit {
       this.itemDetailsForm.disable();
       this.itemDetailsForm.controls.favorite.enable();
       this.itemDetailsForm.controls.folderId.enable();
+      this.itemDetailsForm.controls.tagIds.enable();
     } else if (this.config.mode === "edit") {
       if (!this.config.isAdminConsole || !this.config.admin) {
         this.readOnlyCollections = this.collections.filter(

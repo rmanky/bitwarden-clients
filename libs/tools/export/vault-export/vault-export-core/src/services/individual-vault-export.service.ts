@@ -12,6 +12,7 @@ import { CryptoFunctionService } from "@bitwarden/common/platform/abstractions/c
 import { Utils } from "@bitwarden/common/platform/misc/utils";
 import { CipherService } from "@bitwarden/common/vault/abstractions/cipher.service";
 import { FolderService } from "@bitwarden/common/vault/abstractions/folder/folder.service.abstraction";
+import { TagService } from "@bitwarden/common/vault/abstractions/tag/tag.service.abstraction";
 import { CipherType } from "@bitwarden/common/vault/enums";
 import { Cipher } from "@bitwarden/common/vault/models/domain/cipher";
 import { Folder } from "@bitwarden/common/vault/models/domain/folder";
@@ -35,6 +36,7 @@ export class IndividualVaultExportService
 {
   constructor(
     private folderService: FolderService,
+    private tagService: TagService,
     private cipherService: CipherService,
     pinService: PinServiceAbstraction,
     private keyService: KeyService,

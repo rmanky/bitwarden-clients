@@ -18,6 +18,7 @@ import { CollectionService } from "@bitwarden/admin-console/common";
 import { DeviceTrustToastService } from "@bitwarden/angular/auth/services/device-trust-toast.service.abstraction";
 import { ModalRef } from "@bitwarden/angular/components/modal/modal.ref";
 import { ModalService } from "@bitwarden/angular/services/modal.service";
+import { TagAddEditComponent } from "@bitwarden/angular/vault/components/tag-add-edit.component";
 import { FingerprintDialogComponent, LoginApprovalComponent } from "@bitwarden/auth/angular";
 import { DESKTOP_SSO_CALLBACK, LogoutReason } from "@bitwarden/auth/common";
 import { EventUploadService } from "@bitwarden/common/abstractions/event/event-upload.service";
@@ -107,6 +108,8 @@ export class AppComponent implements OnInit, OnDestroy {
   exportVaultModalRef: ViewContainerRef;
   @ViewChild("appFolderAddEdit", { read: ViewContainerRef, static: true })
   folderAddEditModalRef: ViewContainerRef;
+  @ViewChild("appTagAddEdit", { read: ViewContainerRef, static: true })
+  tagAddEditModalRef: ViewContainerRef;
   @ViewChild("appGenerator", { read: ViewContainerRef, static: true })
   generatorModalRef: ViewContainerRef;
   @ViewChild("loginApproval", { read: ViewContainerRef, static: true })
@@ -397,6 +400,9 @@ export class AppComponent implements OnInit, OnDestroy {
           case "newFolder":
             await this.addFolder();
             break;
+          case "newTag":
+            await this.addTag();
+            break;
           case "openGenerator":
             await this.openGenerator();
             break;
@@ -473,6 +479,30 @@ export class AppComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
     this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
+  }
+
+  async addTag() {
+    this.modalService.closeAll();
+
+    const [modal, childComponent] = await this.modalService.openViewRef(
+      TagAddEditComponent,
+      this.tagAddEditModalRef,
+      (comp) => (comp.tagId = null),
+    );
+    this.modal = modal;
+
+    // eslint-disable-next-line rxjs-angular/prefer-takeuntil, rxjs/no-async-subscribe
+    childComponent.onSavedTag.subscribe(async () => {
+      this.modal.close();
+      // FIXME: Verify that this floating promise is intentional. If it is, add an explanatory comment and ensure there is proper error handling.
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.syncService.fullSync(false);
+    });
+
+    // eslint-disable-next-line rxjs-angular/prefer-takeuntil
+    this.modal.onClosed.subscribe(() => {
+      this.modal = null;
+    });
   }
 
   async addFolder() {

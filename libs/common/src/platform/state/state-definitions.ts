@@ -169,6 +169,10 @@ export const FOLDER_DISK = new StateDefinition("folder", "disk", { web: "memory"
 export const FOLDER_MEMORY = new StateDefinition("decryptedFolders", "memory", {
   browser: "memory-large-object",
 });
+export const TAG_DISK = new StateDefinition("tag", "disk", { web: "memory" });
+export const TAG_MEMORY = new StateDefinition("decryptedTags", "memory", {
+  browser: "memory-large-object",
+});
 export const VAULT_FILTER_DISK = new StateDefinition("vaultFilter", "disk", {
   web: "disk-local",
 });

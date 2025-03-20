@@ -89,6 +89,9 @@ export class VaultHeaderComponent implements OnInit {
   /** Emits an event when the new folder button is clicked in the 'New' dropdown menu */
   @Output() onAddFolder = new EventEmitter<null>();
 
+  /** Emits an event when the new tag button is clicked in the 'New' dropdown menu */
+  @Output() onAddTag = new EventEmitter<null>();
+
   /** Emits an event when the edit collection button is clicked in the header */
   @Output() onEditCollection = new EventEmitter<{ tab: CollectionDialogTabType }>();
 
@@ -216,6 +219,10 @@ export class VaultHeaderComponent implements OnInit {
 
   async addFolder(): Promise<void> {
     this.onAddFolder.emit();
+  }
+
+  async addTag(): Promise<void> {
+    this.onAddTag.emit();
   }
 
   async addCollection(): Promise<void> {

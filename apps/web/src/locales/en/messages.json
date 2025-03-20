@@ -10570,5 +10570,36 @@
   },
   "cannotCreateCollection": {
     "message": "Free organizations may have up to 2 collections. Upgrade to a paid plan to add more collections."
+  },
+  "tag": {
+    "message": "Tag"
+  },
+  "tags": {
+    "message": "Tags"
+  },
+  "noneTag": {
+    "message": "No tag",
+    "description": "This is the tag for uncategorized items"
+  },
+  "addTag": {
+    "message": "Add tag"
+  },
+  "editTag": {
+    "message": "Edit tag"
+  },
+  "newTag": {
+    "message": "New tag"
+  },
+  "tagName": {
+    "message": "Tag name"
+  },
+  "tagHintText": {
+    "message": "Pick a name. Any name."
+  },
+  "deleteTagPermanently": {
+    "message": "Are you sure you want to permanently delete this tag?"
+  },
+  "searchTag": {
+    "message": "Search tag"
   }
 }
